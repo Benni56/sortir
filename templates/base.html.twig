@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+        <title>{% block title %}Sortir{% endblock %}</title>
+
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="icon" href="{{ asset('image/Favicon-Pavenum.png') }}">
+
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <header>
+        <a href="{{ path('main_home') }}" title="Back home">
+            <img class="logo-site" src="{{ asset('image/logo_sortir_carre.png') }}" alt="Sortir"> Sortir.eni
+        </a>
+       <nav>
+            <a href="{{ path('main_home') }}" title = "Accueil" >Accueil</a>
+           <a href="{{ path('app_login') }}" title = "Se connecter" > |Se connecter</a>
+          <a href="{{ path('app_register') }}" title = "Se créer un compte" > |Se créer un compte</a>
+          <a href="{{ path('app_logout') }}" title = "Se déconnecter" > |Se déconnecter</a>
+        </nav>
+    </header>
+
+    {% block body %}{% endblock %}
+
     </body>
 </html>
