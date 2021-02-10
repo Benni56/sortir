@@ -19,10 +19,11 @@ class ModificationProfilType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, array(
                 'type'=> PasswordType::class,
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+                'first_options' => array('label' => 'plainPassword'),
+                'second_options' => array('label' => 'Confirmer'),
+                // essai de mettre un mot de passe à répéter pour bien le confirmer,
                 'mapped' => false,
                 //'constraints' => [
                 //    new NotBlank([
@@ -33,7 +34,7 @@ class ModificationProfilType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                         ]),
-                ])
+            ))
 
 
             ->add('pseudo',TextType :: class)
