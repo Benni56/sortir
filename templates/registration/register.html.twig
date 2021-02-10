@@ -17,12 +17,10 @@
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.telephone) }}
 
-
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-{#        {{ form_row(registrationForm.agreeTerms) }}#}
 
-        <button type="submit" class="btn">Enregistrer</button>
+        <button type="submit" class="btn btn-lg btn-success">Enregistrer</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
