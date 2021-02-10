@@ -2,9 +2,11 @@
     height: 200px;
 }
 
+
 header, a {
     color: brown;
     font-size: 25px;
+    margin-bottom: 30px;
 }
 
 a:hover {
@@ -35,3 +37,4 @@ label {
 button {
     margin : 20px;
 }
+
