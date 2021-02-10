@@ -32,6 +32,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setRoles(["ROLE_USER"]); //changer juste le user par admin pour création d'un admin
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
