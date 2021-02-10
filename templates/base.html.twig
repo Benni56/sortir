@@ -14,9 +14,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="icon" href="{{ asset('image/Favicon-Pavenum.png') }}">
-
     </head>
+
     <body>
+
     <header>
         <a href="{{ path('main_home') }}" title="Back home">
             <img class="logo-site" src="{{ asset('image/logo_sortir_carre.png') }}" alt="Sortir"> Sortir.eni
@@ -27,7 +28,17 @@
             <a href="{{ path('modification_profil') }}" title = "Modifier son profil" > |Modifier son profil</a>
             <a href="{{ path('app_register') }}" title = "Se créer un compte" > |Se créer un compte</a>
             <a href="{{ path('app_logout') }}" title = "Se déconnecter" > |Se déconnecter</a>
-        </nav>
+
+           {#           {% if app.user %}#}
+           {#                <a href="{{ path('sortie_create') }}"> Créer une sortie</a>#}
+           {#                <a href="{{ path('app_logout') }}">Se déconnecter ({{ app.user.username }})</a>#}
+           {#           {% else %}#}
+           {#                <a href="{{ path('app_login') }}"> Se connecter</a>#}
+           {#                <a href="{{ path('app_register') }}">Créer mon compte</a>#}
+           {#           {% endif %}#}
+
+
+       </nav>
     </header>
 
     {% block body %}{% endblock %}
