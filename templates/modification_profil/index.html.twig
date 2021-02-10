@@ -8,6 +8,8 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
+<div class="container">
+    <div class="col align-self-center">
     <h1>Formulaire de modification de profil</h1>
 
     {{ form_start(modificationProfil) }}
@@ -24,7 +26,8 @@
     }) }}
     {#        {{ form_row(registrationForm.agreeTerms) }}#}
 
-    <button type="submit" class="btn">Modification enregistrée</button>
+    <button type="submit" class="btn btn-lg btn-success">Modification enregistrée</button>
     {{ form_end(modificationProfil) }}
-
+    </div>
+</div>
 {% endblock %}
