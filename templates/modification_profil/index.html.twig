@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du profil {% endblock %}
+
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>Formulaire de modification de profil</h1>
+
+    {{ form_start(modificationProfil) }}
+
+    {{ form_row(modificationProfil.nom) }}
+    {{ form_row(modificationProfil.prenom) }}
+    {{ form_row(modificationProfil.pseudo) }}
+    {{ form_row(modificationProfil.email) }}
+    {{ form_row(modificationProfil.telephone) }}
+
+
+    {{ form_row(modificationProfil.plainPassword, {
+        label: 'Password'
+    }) }}
+    {#        {{ form_row(registrationForm.agreeTerms) }}#}
+
+    <button type="submit" class="btn">Modification enregistrée</button>
+    {{ form_end(modificationProfil) }}
+
+{% endblock %}
