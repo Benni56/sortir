@@ -7,6 +7,8 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
+<div class="container">
+    <div class="col align-self-center">
     <h1>Formulaire d'inscription</h1>
 
     {{ form_start(registrationForm) }}
@@ -21,6 +23,9 @@
             label: 'Password'
         }) }}
 
+
         <button type="submit" class="btn btn-lg btn-success">Enregistrer</button>
     {{ form_end(registrationForm) }}
+    </div>
+</div>
 {% endblock %}
