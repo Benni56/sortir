@@ -34,7 +34,7 @@ class ModificationProfilController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
 
             $this->addFlash('success', 'La modification du compte a bien été prise en compte');
             return $this->redirectToRoute('main_home');
