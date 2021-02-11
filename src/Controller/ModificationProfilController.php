@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Participant;
 use App\Form\RegistrationFormType;
+use App\Repository\ParticipantRepository;
 use App\Security\AppAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,8 @@ class ModificationProfilController extends AbstractController
     public function modifier(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator): Response
     {
         $user= $this->getUser();
+
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -36,19 +39,21 @@ class ModificationProfilController extends AbstractController
             $entityManager->flush();
 
 
-            $this->addFlash('success', 'La modification du compte a bien été prise en compte');
-            return $this->redirectToRoute('main_home');
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
 
-//            return $guardHandler->authenticateUserAndHandleSuccess(
-//                $user,
-//                $request,
-//                $authenticator,
-//                'main' // firewall name in security.yaml
-//            );
         }
 
         return $this->render('modification_profil/index.html.twig', [
             'modificationProfil' => $form->createView(),
         ]);
     }
+
+
+
+
 }
