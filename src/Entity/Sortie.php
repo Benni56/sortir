@@ -68,6 +68,11 @@ class Sortie
      */
     private $inscription;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=campus::class, inversedBy="sorties")
+     */
+    private $campus;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -189,6 +194,18 @@ class Sortie
     public function setInscription(?Inscription $inscription): self
     {
         $this->inscription = $inscription;
+
+        return $this;
+    }
+
+    public function getCampus(): ?campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?campus $campus): self
+    {
+        $this->campus = $campus;
 
         return $this;
     }
