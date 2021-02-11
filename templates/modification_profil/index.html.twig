@@ -24,10 +24,12 @@
     {{ form_row(modificationProfil.plainPassword, {
         label: 'Password'
     }) }}
-    {#        {{ form_row(registrationForm.agreeTerms) }}#}
+
 
     <button type="submit" class="btn btn-lg btn-success">Modification enregistrée</button>
-    {{ form_end(modificationProfil) }}
+
+        {{ form_end(modificationProfil) }}
+
     </div>
 </div>
 {% endblock %}
