@@ -63,6 +63,11 @@ class Sortie
      */
     private $organisateur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="sorties")
+     */
+    private $inscription;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -172,6 +177,18 @@ class Sortie
     public function setOrganisateur(?Participant $organisateur): self
     {
         $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    public function getInscription(): ?Inscription
+    {
+        return $this->inscription;
+    }
+
+    public function setInscription(?Inscription $inscription): self
+    {
+        $this->inscription = $inscription;
 
         return $this;
     }
