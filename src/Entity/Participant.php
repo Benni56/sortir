@@ -91,6 +91,11 @@ class Participant implements UserInterface
      */
     private $sorties;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Inscription::class, inversedBy="participants")
+     */
+    private $inscription;
+
     public function __construct()
     {
         $this->sorties = new ArrayCollection();
@@ -296,6 +301,18 @@ class Participant implements UserInterface
                 $sorty->setOrganisateur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInscription(): ?Inscription
+    {
+        return $this->inscription;
+    }
+
+    public function setInscription(?Inscription $inscription): self
+    {
+        $this->inscription = $inscription;
 
         return $this;
     }
