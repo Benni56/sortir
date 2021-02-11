@@ -73,6 +73,16 @@ class Participant implements UserInterface
      */
     private $actif;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoName;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="participants")
+     */
+    private $NameCampus;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -219,6 +229,30 @@ class Participant implements UserInterface
     public function setActif(bool $actif): self
     {
         $this->actif = $actif;
+
+        return $this;
+    }
+
+    public function getPhotoName(): ?string
+    {
+        return $this->photoName;
+    }
+
+    public function setPhotoName(?string $photoName): self
+    {
+        $this->photoName = $photoName;
+
+        return $this;
+    }
+
+    public function getNameCampus(): ?Campus
+    {
+        return $this->NameCampus;
+    }
+
+    public function setNameCampus(?Campus $NameCampus): self
+    {
+        $this->NameCampus = $NameCampus;
 
         return $this;
     }
