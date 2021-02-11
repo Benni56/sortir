@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Etat;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,7 @@ class EtatController extends AbstractController
     /**
      * @Route("/etats/add", name="etats_add")
      */
-    public function addEtat(EntityManager $entityManager): Response
+    public function addEtat(EntityManagerInterface $entityManager): Response
     {
         $creationEtat = new Etat();
         $creationEtat->setLibelle('Créée');
@@ -41,6 +42,8 @@ class EtatController extends AbstractController
 
         $entityManager->flush();
 
-        return new Response('ok');
+        return $this->render('etat/index.html.twig', [
+            'controller_name' => 'EtatController',
+        ]);
     }
 }
