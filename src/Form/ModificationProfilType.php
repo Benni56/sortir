@@ -45,8 +45,6 @@ class ModificationProfilType extends AbstractType
             ->add('telephone',TextType :: class)
             ->add('nom',TextType :: class)
             ->add('prenom',TextType :: class);
-
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
