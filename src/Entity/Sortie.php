@@ -47,6 +47,17 @@ class Sortie
      */
     private $descriptionInfos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Etat::class, inversedBy="sorties")
+     */
+    private $etat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=lieu::class, inversedBy="sorties")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lieux;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +131,30 @@ class Sortie
     public function setDescriptionInfos(?string $descriptionInfos): self
     {
         $this->descriptionInfos = $descriptionInfos;
+
+        return $this;
+    }
+
+    public function getLieux(): ?lieu
+    {
+        return $this->lieux;
+    }
+
+    public function setLieux(?lieu $lieux): self
+    {
+        $this->lieux = $lieux;
+
+        return $this;
+    }
+
+    public function getEtat(): ?Etat
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?Etat $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }
