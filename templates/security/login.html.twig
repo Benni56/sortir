@@ -8,12 +8,6 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            Bonjour, vous êtes bien connecté avec l'identifiant :  {{ app.user.username }}
-        </div>
-    {% endif %}
-
     <div class="container">
         <div class="col align-self-center">
     <h1>Connexion</h1>
