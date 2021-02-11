@@ -36,12 +36,15 @@ class ModificationProfilController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $authenticator,
-                'main' // firewall name in security.yaml
-            );
+            $this->addFlash('success', 'La modification du compte a bien été prise en compte');
+            return $this->redirectToRoute('main_home');
+
+//            return $guardHandler->authenticateUserAndHandleSuccess(
+//                $user,
+//                $request,
+//                $authenticator,
+//                'main' // firewall name in security.yaml
+//            );
         }
 
         return $this->render('modification_profil/index.html.twig', [
