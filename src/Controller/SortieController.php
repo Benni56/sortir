@@ -18,7 +18,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class SortieController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
+     *
      * @Route("/sorties/create", name="sortie_create")
      */
     public function createSorties(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator): Response
@@ -28,7 +28,7 @@ class SortieController extends AbstractController
 
         $user = $this->getUser();
         //pré remplissage du campus par défaut de l'utilisateur connecté
-        $form = $this->createForm(SortieFormType::class, $sortie);
+        $form = $this->createForm(SortieType::class, $sortie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()&& $form->isValid())
