@@ -46,8 +46,8 @@ class SortieType extends AbstractType
             ->add('nombreInscriptionMax', IntegerType::class, [
                 'label'=>'Nombre de place'
 
-
             ])
+
             ->add('descriptionInfos', TextareaType::class, [
                 'label'=>'Description et informations'
 
