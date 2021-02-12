@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Sortie;
-use App\Form\SortieFormType;
 use App\Form\SortieType;
 use App\Security\AppAuthenticator;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,7 +60,6 @@ class SortieController extends AbstractController
         return $this->render('sortie/create.html.twig',[
             "sortie_form" => $form->createView() //passe le form à twig
         ]);
-
 
     }
 }

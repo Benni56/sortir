@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block body %}
+<div class="container">
+    <div class="col align-self-center">
     <h1>Formulaire de création de sortie</h1>
 
     {{ form_start(sortie_form) }}
@@ -23,6 +25,7 @@
 
 
     <button type="submit" class="btn btn-lg btn-success">Sortie enregistrée</button>
+        <div>
 
     {{ form_end(sortie_form) }}
 
