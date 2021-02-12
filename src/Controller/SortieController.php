@@ -62,14 +62,5 @@ class SortieController extends AbstractController
       ]);
 
 
-
-
-
-
-
-
-        return $this->render('sortie/create.html.twig', [
-
-        ]);
     }
 }
