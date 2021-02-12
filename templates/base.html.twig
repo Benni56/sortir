@@ -27,7 +27,7 @@
 
 
            {% if app.user %}
-                {#    <a href="{{ path('sortie_create') }}"> Créer une sortie</a>#}
+                <a href="{{ path('sortie_create') }}"> Créer une sortie</a>
 
                 <a href="{{ path('modification_profil') }}" title = "Modifier son profil" > Modifier son profil</a>
                 <a href="{{ path('app_logout') }}" title="Se déconnecter"> Se déconnecter </a>
@@ -37,7 +37,6 @@
                 <a href="{{ path('app_register') }}" title="Créer mon compte"> Créer mon compte</a>
 
            {% endif %}
-
 
        </nav>
 
@@ -49,7 +48,7 @@
 
             <div class="mb-3">
                 Bonjour {{ app.user.username }} Vous êtes maintenant connecté !
-
+                </div>
             {% endif %}
     {% endblock %}
     </body>

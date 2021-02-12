@@ -4,49 +4,49 @@ namespace App\Controller;
 
 use App\Entity\Sortie;
 use App\Form\SortieType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Security\AppAuthenticator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class SortieController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_USER")
+     *
      * @Route("/sorties/create", name="sortie_create")
      */
-    public function createSorties(
-        Request $request,
-        EntityManagerInterface $entityManager
-    ): Response
+    public function createSorties(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator): Response
     {
         //création de l'instance sortie vide associée au formulaire
         $sortie = new Sortie();
 
         $user = $this->getUser();
         //pré remplissage du campus par défaut de l'utilisateur connecté
-        $sortie->setCampus($user->getUsername());
+        $form = $this->createForm(SortieType::class, $sortie);
+        $form->handleRequest($request);
 
-        //on hydrate les propriétés nécessaires au formulaire
-        $sortie->setNom();
-        $sortie->setDateDebut(new \DateTime());
-        $sortie->setDateClotureInscription(new \DateTime());
-        $sortie->setNombreInscriptionMax();
-        $sortie->setDuree();
-        $sortie->setDescriptionInfos();
-        $sortie->setLieux();
-
-        //création du formulaire avec passage en param de l'instance vide
-        $sortieForm = $this->createForm(SortieType::class, $sortie);
-        //récupère les données du form et les inject dans la sortie
-        $sortieForm->handleRequest($request);
-
-        //vérification de validation de smoussion du for
-        if ($sortieForm->isSubmitted()&& $sortieForm->isValid())
+        if ($form->isSubmitted()&& $form->isValid())
+            //on hydrate les propriétés nécessaires au formulaire
         {
+            $sortie->setNom($form->get('nom')->getData());
+            $sortie->setDateDebut($form->get('dateDebut')->getData());
+            $sortie->setDateClotureInscription($form->get('dateClotureInscription')->getData());
+            $sortie->setNombreInscriptionMax($form->get('nombreInscriptionMax')->getData());
+            $sortie->setDuree($form->get('duree')->getData());
+            $sortie->setDescriptionInfos($form->get('descriptionInfos')->getData());
+            //$sortie->setLieux();
+
+            //création du formulaire avec passage en param de l'instance vide
+            //$sortieForm = $this->createForm(SortieFormType::class, $sortie);
+            //récupère les données du form et les inject dans la sortie
+            //$sortieForm->handleRequest($request);
+
             //on insert les données
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($sortie);
             $entityManager->flush();
 
@@ -57,19 +57,12 @@ class SortieController extends AbstractController
 
         }
 
-      return $this->render('sortie/create.html.twig',[
-         "sortie_form" => $sortieForm->createView() //passe le form à twig
-      ]);
-
-
-
-
-
-
-
-
-        return $this->render('sortie/create.html.twig', [
-
+        return $this->render('sortie/create.html.twig',[
+            "sortie_form" => $form->createView() //passe le form à twig
         ]);
+
     }
 }
+
+
+
