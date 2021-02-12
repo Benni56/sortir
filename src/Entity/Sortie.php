@@ -69,7 +69,7 @@ class Sortie
     private $inscription;
 
     /**
-     * @ORM\ManyToOne(targetEntity=campus::class, inversedBy="sorties")
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="sorties")
      */
     private $campus;
 

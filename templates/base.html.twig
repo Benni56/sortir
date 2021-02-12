@@ -19,12 +19,13 @@
     <body>
 
     <header>
-            <a href="{{ path('main_home') }}" title="Back home">
-                 <img class="logo-site" src="{{ asset('image/logo_sortir_carre.png') }}" alt="Sortir"> Sortir
-            </a>
-
-            <nav>
+        <a href="{{ path('main_home') }}" title="Back home">
+            <img class="logo-site" src="{{ asset('image/logo_sortir_carre.png') }}" alt="Sortir"> Sortir
+        </a>
+       <nav>
                  <a href="{{ path('main_home') }}" title = "Accueil" >Accueil</a>
+
+
            {% if app.user %}
                 <a href="{{ path('sortie_create') }}"> Créer une sortie</a>
                 <a href="{{ path('modification_profil') }}" title = "Modifier son profil" > Modifier son profil</a>
@@ -32,22 +33,27 @@
            {% else %}
                 <a href="{{ path('app_login') }}" title="Se connecter"> Se connecter</a>
                 <a href="{{ path('app_register') }}" title="Créer mon compte"> Créer mon compte</a>
+
            {% endif %}
-
-
-            </nav>
+       </nav>
 
     </header>
 
-            {% block body %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+            <div class="alert-{{ label }}">
+            {{ message }}
+            </div>
+            {% endfor %}
+        {% endfor %}
+    {% block body %}
 
-            {% if app.user %}
+           {% if app.user %}
 
             <div class="mb-3">
                 Bonjour {{ app.user.username }} Vous êtes maintenant connecté !
-            {% endif %}
-
-            {% endblock %}
             </div>
+            {% endif %}
+    {% endblock %}
     </body>
 </html>

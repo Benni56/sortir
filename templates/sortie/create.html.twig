@@ -5,10 +5,29 @@
 {% endblock %}
 
 {% block body %}
-    <h1> Créer une sortie </h1>
-    <div>
+    <h1>Formulaire de création de sortie</h1>
 
-    </div>
+    {{ form_start(sortie_form, {attr: {'novalidate': 'novalidate'}}) }}
+
+    {{ form_row(sortie_form.nom) }}
+    {{ form_row(sortie_form.dateDebut) }}
+    {{ form_row(sortie_form.dateClotureInscription) }}
+    {{ form_row(sortie_form.nombreInscriptionMax) }}
+    {{ form_row(sortie_form.duree) }}
+    {{ form_row(sortie_form.descriptionInfos) }}
+    {{ form_row(sortie_form.campus) }}
+    {{ form_row(sortie_form.lieux) }}
+    {{ form_row(sortie_form.rue) }}
+
+
+
+
+
+
+    <button type="submit" class="btn btn-lg btn-success">Sortie enregistrée</button>
+
+    {{ form_end(sortie_form) }}
+
 
 
 
