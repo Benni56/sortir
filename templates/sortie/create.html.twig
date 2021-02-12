@@ -9,7 +9,7 @@
     <div class="col align-self-center">
     <h1>Formulaire de création de sortie</h1>
 
-    {{ form_start(sortie_form) }}
+    {{ form_start(sortie_form, {attr: {'novalidate': 'novalidate'}}) }}
 
     {{ form_row(sortie_form.nom) }}
     {{ form_row(sortie_form.dateDebut) }}
@@ -17,8 +17,10 @@
     {{ form_row(sortie_form.nombreInscriptionMax) }}
     {{ form_row(sortie_form.duree) }}
     {{ form_row(sortie_form.descriptionInfos) }}
-    {{ form_row(sortie_form.lieux) }}
     {{ form_row(sortie_form.campus) }}
+    {{ form_row(sortie_form.lieux) }}
+    {{ form_row(sortie_form.rue) }}
+
 
 
 

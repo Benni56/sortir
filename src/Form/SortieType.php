@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,21 +38,22 @@ class SortieType extends AbstractType
             ])
 
             ->add('dateClotureInscription', DateTimeType::class, [
-                'label'=>'Date limite d inscription'
+                'label'=>'Date limite d\'inscription'
 
 
             ])
 
             ->add('nombreInscriptionMax', IntegerType::class, [
-                'label'=>'Nombre d inscrits maximums'
+                'label'=>'Nombre de place'
 
 
             ])
-            ->add('descriptionInfos', TextType::class, [
+            ->add('descriptionInfos', TextareaType::class, [
                 'label'=>'Description et informations'
 
 
             ])
+
 
             ->add('campus', EntityType::class,[
                 'class' =>Campus::class,
@@ -63,9 +65,11 @@ class SortieType extends AbstractType
                 'choice_label' =>'nom',
                 'label' =>'Lieu'])
 
-            //->add('rue', EntityType::class,[
-            //    'class' =>Lieu::class,
-            //    'label' =>'Rue'])
+            ->add('rue', EntityType::class,[
+                'class' =>Lieu::class,
+                'choice_label' => 'Rue',
+                'label' =>'Rue',
+                'mapped'=> false,])
 
             //->add('codePostal', EntityType::class,[
             //    'class' =>Lieu::class,

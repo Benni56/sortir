@@ -28,27 +28,31 @@
 
            {% if app.user %}
                 <a href="{{ path('sortie_create') }}"> Créer une sortie</a>
-
                 <a href="{{ path('modification_profil') }}" title = "Modifier son profil" > Modifier son profil</a>
                 <a href="{{ path('app_logout') }}" title="Se déconnecter"> Se déconnecter </a>
-
            {% else %}
                 <a href="{{ path('app_login') }}" title="Se connecter"> Se connecter</a>
                 <a href="{{ path('app_register') }}" title="Créer mon compte"> Créer mon compte</a>
 
            {% endif %}
-
        </nav>
 
     </header>
 
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+            <div class="alert-{{ label }}">
+            {{ message }}
+            </div>
+            {% endfor %}
+        {% endfor %}
     {% block body %}
 
            {% if app.user %}
 
             <div class="mb-3">
                 Bonjour {{ app.user.username }} Vous êtes maintenant connecté !
-                </div>
+            </div>
             {% endif %}
     {% endblock %}
     </body>
