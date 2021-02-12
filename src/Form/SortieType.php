@@ -60,37 +60,37 @@ class SortieType extends AbstractType
                 'choice_label' => 'nom',
                 'label' =>'Campus'])
 
-            ->add('lieux',EntityType::class, [
-                'class' =>Sortie::class,
-                'choice_label' =>'nom',
-                'label' =>'Lieu'])
+//            ->add('lieux',EntityType::class, [
+//                'class' =>Lieu::class,
+//                'choice_label' =>'nom',
+//                'label' =>'Lieu'])
 
-            ->add('rue', EntityType::class,[
-                'class' =>Lieu::class,
-                'choice_label' => 'Rue',
-                'label' =>'Rue',
-                'mapped'=> false])
-
-            ->add('latitude', EntityType::class,[
-                'class' =>Lieu::class,
-                'label' =>'Latitude',
-                'mapped'=>false])
-
-            ->add('longitude', EntityType::class,[
-                'class' =>Lieu::class,
-                'label' =>'Longitude',
-                'mapped'=>false])
-
-            ->add('codePostal', EntityType::class,[
-                'class' =>Ville::class,
-                'choice_label' =>'nom',
-                'label' =>'Code postal',
-                'mapped' => false])
-
-            ->add('ville', EntityType::class, [
-                'class'=>Ville::class,
-                'label'=>'Ville',
-                'mapped'=> false])
+//            ->add('rue', EntityType::class,[
+//                'class' =>Lieu::class,
+//                'choice_label' => 'Rue',
+//                'label' =>'Rue',
+//                'mapped'=> false])
+//
+//            ->add('latitude', EntityType::class,[
+//                'class' =>Lieu::class,
+//                'label' =>'Latitude',
+//                'mapped'=>false])
+//
+//            ->add('longitude', EntityType::class,[
+//                'class' =>Lieu::class,
+//                'label' =>'Longitude',
+//                'mapped'=>false])
+//
+//            ->add('codePostal', EntityType::class,[
+//                'class' =>Ville::class,
+//                'choice_label' =>'nom',
+//                'label' =>'Code postal',
+//                'mapped' => false])
+//
+//            ->add('ville', EntityType::class, [
+//                'class'=>Ville::class,
+//                'label'=>'Ville',
+//                'mapped'=> false])
 
 
 //            ->add('organisateur')

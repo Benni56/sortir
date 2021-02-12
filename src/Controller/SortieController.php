@@ -21,12 +21,13 @@ class SortieController extends AbstractController
      *
      * @Route("/sorties/create", name="sortie_create")
      */
-    public function createSorties(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthenticator $authenticator): Response
+    public function createSorties(Request $request,
+                                  UserPasswordEncoderInterface $passwordEncoder,
+                                  GuardAuthenticatorHandler $guardHandler,
+                                  AppAuthenticator $authenticator): Response
     {
         //création de l'instance sortie vide associée au formulaire
         $sortie = new Sortie();
-        $lieu = new Lieu();
-        $ville = new Ville();
 
         $user = $this->getUser();
         //pré remplissage du campus par défaut de l'utilisateur connecté
@@ -35,21 +36,7 @@ class SortieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) //on hydrate les propriétés nécessaires au formulaire
         {
-            $sortie->setNom($form->get('nom')->getData());
-            $sortie->setDateDebut($form->get('dateDebut')->getData());
-            $sortie->setDateClotureInscription($form->get('dateClotureInscription')->getData());
-            $sortie->setNombreInscriptionMax($form->get('nombreInscriptionMax')->getData());
-            $sortie->setDuree($form->get('duree')->getData());
-            $sortie->setDescriptionInfos($form->get('descriptionInfos')->getData());
-            $sortie = $lieu->setRue($form->get('Rue')->getData());
-            $sortie = $lieu->setLatitude($form->get('latitude')->getData());
-            $sortie = $lieu->setLongitude($form->get('longitude')->getData());
-            $sortie = $ville->setCodePostal($form->get('code postal')->getData());
-            $sortie = $ville->setNom($form->get('ville')->getData());
-            //création du formulaire avec passage en param de l'instance vide
-            //$sortieForm = $this->createForm(SortieFormType::class, $sortie);
-            //récupère les données du form et les inject dans la sortie
-            //$sortieForm->handleRequest($request);
+
 
             //on insert les données
             $entityManager = $this->getDoctrine()->getManager();
@@ -70,3 +57,19 @@ class SortieController extends AbstractController
     }
 }
 
+
+//            $sortie->setNom($form->get('nom')->getData());
+//            $sortie->setDateDebut($form->get('dateDebut')->getData());
+//            $sortie->setDateClotureInscription($form->get('dateClotureInscription')->getData());
+//            $sortie->setNombreInscriptionMax($form->get('nombreInscriptionMax')->getData());
+//            $sortie->setDuree($form->get('duree')->getData());
+//            $sortie->setDescriptionInfos($form->get('descriptionInfos')->getData());
+//            $sortie = $lieu->setRue($form->get('Rue')->getData());
+//            $sortie = $lieu->setLatitude($form->get('latitude')->getData());
+//            $sortie = $lieu->setLongitude($form->get('longitude')->getData());
+//            $sortie = $ville->setCodePostal($form->get('code postal')->getData());
+//            $sortie = $ville->setNom($form->get('ville')->getData());
+//création du formulaire avec passage en param de l'instance vide
+//$sortieForm = $this->createForm(SortieFormType::class, $sortie);
+//récupère les données du form et les inject dans la sortie
+//$sortieForm->handleRequest($request);
