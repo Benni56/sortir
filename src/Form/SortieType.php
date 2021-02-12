@@ -69,20 +69,29 @@ class SortieType extends AbstractType
                 'class' =>Lieu::class,
                 'choice_label' => 'Rue',
                 'label' =>'Rue',
-                'mapped'=> false,])
+                'mapped'=> false])
 
-            //->add('codePostal', EntityType::class,[
-            //    'class' =>Lieu::class,
-            //    'choice_label' =>'nom',
-            //    'label' =>'Ville'])
+            ->add('latitude', EntityType::class,[
+                'class' =>Lieu::class,
+                'label' =>'Latitude',
+                'mapped'=>false])
 
-            //->add('latitude', EntityType::class,[
-            //    'class' =>Lieu::class,
-            //    'label' =>'Latitude'])
+            ->add('longitude', EntityType::class,[
+                'class' =>Lieu::class,
+                'label' =>'Longitude',
+                'mapped'=>false])
 
-            //->add('longitude', EntityType::class,[
-            //    'class' =>Lieu::class,
-            //    'label' =>'Longitude'])
+            ->add('codePostal', EntityType::class,[
+                'class' =>Ville::class,
+                'choice_label' =>'nom',
+                'label' =>'Code postal',
+                'mapped' => false])
+
+            ->add('ville', EntityType::class, [
+                'class'=>Ville::class,
+                'label'=>'Ville',
+                'mapped'=> false])
+
 
 //            ->add('organisateur')
 //            ->add('inscription')
