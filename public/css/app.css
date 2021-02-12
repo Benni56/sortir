@@ -16,6 +16,7 @@ a:hover {
 h1 {
     color: darkgreen;
     font-size: 40px;
+    padding-bottom: 20px;
 }
 
 body {
@@ -37,5 +38,28 @@ label {
 
 button {
     margin : 20px;
+}
+
+/* Form */
+#sortie_dateDebut {
+   display: inline-flex;
+}
+
+#sortie_dateClotureInscription {
+    display: inline-flex;
+}
+
+#sortie_dateDebut_date_year {
+    margin-right: 20px;
+}
+
+#sortie_dateClotureInscription_date_year {
+    margin-right: 20px;
+}
+
+form {
+    font-family: Poppins;
+    font-size: medium;
+    color: #B0413E;
 }
 
