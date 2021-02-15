@@ -37,7 +37,6 @@ class SortieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) //on hydrate les propriétés nécessaires au formulaire
         {
 
-
             //on insert les données
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($sortie);

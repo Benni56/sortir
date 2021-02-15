@@ -51,19 +51,17 @@ class SortieType extends AbstractType
             ->add('descriptionInfos', TextareaType::class, [
                 'label'=>'Description et informations'
 
-
             ])
-
 
             ->add('campus', EntityType::class,[
                 'class' =>Campus::class,
                 'choice_label' => 'nom',
                 'label' =>'Campus'])
 
-//            ->add('lieux',EntityType::class, [
-//                'class' =>Lieu::class,
-//                'choice_label' =>'nom',
-//                'label' =>'Lieu'])
+            ->add('lieux',EntityType::class, [
+                'class' =>Lieu::class,
+                'choice_label' =>'nom',
+                'label' =>'Lieu'])
 
 //            ->add('rue', EntityType::class,[
 //                'class' =>Lieu::class,
