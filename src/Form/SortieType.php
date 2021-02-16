@@ -23,34 +23,27 @@ class SortieType extends AbstractType
             ->add('nom',TextType :: class,
                 [
                     'label'=>'Nom de la sortie'
-
                 ])
 
             ->add('dateDebut', DateTimeType::class,
                 [
                     'label'=>'Date et Heure de la sortie'
-
                 ])
 
             ->add('duree', IntegerType::class, [
                 'label'=>'Durée'
-
             ])
 
             ->add('dateClotureInscription', DateTimeType::class, [
                 'label'=>'Date limite d\'inscription'
-
-
             ])
 
             ->add('nombreInscriptionMax', IntegerType::class, [
                 'label'=>'Nombre de place'
-
             ])
 
             ->add('descriptionInfos', TextareaType::class, [
                 'label'=>'Description et informations'
-
             ])
 
             ->add('campus', EntityType::class,[

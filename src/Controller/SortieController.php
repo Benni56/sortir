@@ -6,6 +6,7 @@ use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Entity\Ville;
 use App\Form\SortieType;
+use App\Repository\EtatRepository;
 use App\Repository\SortieRepository;
 use App\Security\AppAuthenticator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -25,7 +26,9 @@ class SortieController extends AbstractController
     public function createSorties(Request $request,
                                   UserPasswordEncoderInterface $passwordEncoder,
                                   GuardAuthenticatorHandler $guardHandler,
-                                  AppAuthenticator $authenticator): Response
+                                  AppAuthenticator $authenticator,
+                                    EtatRepository $etatRepository
+    ): Response
     {
         //création de l'instance sortie vide associée au formulaire
         $sortie = new Sortie();
@@ -37,12 +40,29 @@ class SortieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) //on hydrate les propriétés nécessaires au formulaire
         {
+            $en = $request->request->get("enregistrer");
 
-            //on insert les données
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($sortie);
-            $entityManager->flush();
+            if ($en == "creer") {
+                $etat = $etatRepository->find(1);
+                $sortie->setEtat($etat);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($sortie);
+                $entityManager->flush();
 
+                $etat = $etatRepository->find(2);
+                $sortie->setEtat($etat);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($sortie);
+                $entityManager->flush();
+
+            } else if ($en == "annuler"){
+                $etat = $etatRepository->find(8);
+                $sortie->setEtat($etat);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($sortie);
+                $entityManager->flush();
+
+            }
             $this->addFlash('Succès', 'Votre sortie a bien été créée');
 
             //ca redirige vers la page qui liste les sorties
@@ -56,8 +76,20 @@ class SortieController extends AbstractController
 
     }
 
+  /*   /**
+     * @Route("/sorties", name="sorties_list")
+  */
+    /*    public function list(SortieRepository $sortieRepository): Response
+      {
+           //aller chercher tous les wishes dans la bdd
+           //$wishRepository = $this->getDoctrine()->getRepository(Wish::class);
+           $sortie = $sortieRepository->findCategorizedSorties();
 
-
+           return $this->render('sortie/list.html.twig', [
+               "" => $wishes
+           ]);
+       }
+   */
 
 }
 
