@@ -1,3 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} {{ parent() }} | Sortir {% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <div class="container">
+        {{ form_start(form_search) }}
+
+
+
+
+        {{ form_end(form_search) }}
+
+        </div>
+
+    </div>
+
+
+
+<section>
+    {% for sortie in sorties %}
+    <div>{{ sortie }}</div>
+    {% endfor %}
+</section>
+{% endblock %}

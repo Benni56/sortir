@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Sortie
 {
-
-    public function __toString()
-    {
-        return $this->nom;
-    }
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -215,4 +209,11 @@ class Sortie
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->id;
+    }
+
+
 }
