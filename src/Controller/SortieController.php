@@ -6,6 +6,7 @@ use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Entity\Ville;
 use App\Form\SortieType;
+use App\Repository\SortieRepository;
 use App\Security\AppAuthenticator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,7 @@ class SortieController extends AbstractController
 {
     /**
      *
-     * @Route("/sorties/create", name="sortie_create")
+     * @Route("/sortie/create", name="sortie_create")
      */
     public function createSorties(Request $request,
                                   UserPasswordEncoderInterface $passwordEncoder,
@@ -52,6 +53,18 @@ class SortieController extends AbstractController
         return $this->render('sortie/create.html.twig', [
             "sortie_form" => $form->createView() //passe le form à twig
         ]);
+
+    }
+
+    /**
+     * @route("/sortie/{id}", name="sortie_detail", methods={"GET"})
+     * @param Sortie $sortie
+     * @return Response
+     */
+
+    public function detail(Sortie $sortie) : Response{
+
+        return $this->render('sortie/detail.html.twig', ["sortie"=>$sortie]);
 
     }
 }

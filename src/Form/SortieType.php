@@ -33,7 +33,7 @@ class SortieType extends AbstractType
                 ])
 
             ->add('duree', IntegerType::class, [
-                'label'=>'Durée'
+                'label'=>'Durée en minutes'
 
             ])
 
