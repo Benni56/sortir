@@ -25,13 +25,15 @@ class SortieRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('s');
         if($keywords)
         {
-            $keywordsArray = explode("", $keywords);
+            $keywordsArray = explode(" ", $keywords);
 
             for ($i = 0; $i<count($keywordsArray); $i++) {
                 $queryBuilder
-                    ->where('s.nom LIKE :key')
-                    ->orWhere('s.descriptionInfos LIKE :key')
-                    ->setParameter('key', '%'.$keywordsArray[$i] .'%');
+                    ->orWhere("s.nom LIKE :kw$i OR s.descriptionInfos LIKE :kw$i")
+                    ->setParameter(":kw$i", "%". $keywordsArray[$i] ."%");
+//                    ->where('s.nom LIKE :key')
+//                    ->orWhere('s.descriptionInfos LIKE :key')
+//                    ->setParameter('key', '%'.$keywordsArray[$i] .'%');
 
             }
         }

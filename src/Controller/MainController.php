@@ -27,8 +27,8 @@ class MainController extends AbstractController
         $data = $form->getData();
 
         //on récupère la recherche
-        $sorties=$sortieRepository->search($data['keyword']);
-       // $sorties = $sortieRepository->findBy([]);
+        $sorties=$sortieRepository->search($data->getKeyWords());
+        //$sorties = $sortieRepository->findBy([]);
 
         return $this->render('main/home.html.twig', [
         "sorties"=>$sorties,
