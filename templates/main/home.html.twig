@@ -6,21 +6,37 @@
     <div class="jumbotron">
         <div class="container">
         {{ form_start(form_search) }}
-
-
-
-
         {{ form_end(form_search) }}
 
         </div>
 
     </div>
 
+    <table>
+        <colgroup span="8" class="columns"></colgroup>
+        <tr>
+            <th>Nom de la sortie</th>
+            <th>Date de la sortie</th>
+            <th>Clôture</th>
+            <th>Nombre de places</th>
+            <th>Etat</th>
+            <th>Inscrit</th>
+            <th>Organisateur</th>
+            <th>Actions</th>
+        </tr>
 
+        {% for sortie in sorties %}
+            <tr>
+                <td>{{ sortie.nom }}</td>
+                <td>{{ sortie.dateDebut|date("d/m/Y - H:i")}}</td>
+                <td>{{ sortie.dateClotureInscription|date("d/m/y") }}</td>
+                <td>{{ sortie.nombreInscriptionMax }}</td>
+                <td>{{ sortie.etat }}</td>
+                <td>{{ sortie.inscription }}</td>
+                <td>{{ sortie.organisateur }}</td>
+               {#  <td>{{ sortie.nom }}</td>#}
+            </tr>
 
-<section>
-    {% for sortie in sorties %}
-    <div>{{ sortie }}</div>
-    {% endfor %}
-</section>
+        {% endfor %}
+    </table>
 {% endblock %}
