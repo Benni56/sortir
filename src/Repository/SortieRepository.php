@@ -19,6 +19,34 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
+    public function search($keywords="")
+    {
+        //création requête QB
+        $queryBuilder = $this->createQueryBuilder('s');
+        if($keywords)
+        {
+            $keywordsArray = explode("", $keywords);
+
+            for ($i = 0; $i<count($keywordsArray); $i++) {
+                $queryBuilder
+                    ->where('s.nom LIKE :key')
+                    ->orWhere('s.descriptionInfos LIKE :key')
+                    ->setParameter('key', '%'.$keywordsArray[$i] .'%');
+
+            }
+        }
+
+        //récupère l'objet querry
+        $querry = $queryBuilder->getQuery();
+        //retourne le résultat
+        $sortizes = $querry->getResult();
+
+        return $sortizes;
+
+
+    }
+
+
     // /**
     //  * @return Sortie[] Returns an array of Sortie objects
     //  */
