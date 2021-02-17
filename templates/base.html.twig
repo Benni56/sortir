@@ -28,7 +28,7 @@
            {% if app.user %}
                 <a href="{{ path('sortie_create') }}" title="Créer une sortie">Créer une sortie</a>
                 <a href="{{ path('modification_profil') }}" title = "Modifier mon profil">Modifier mon profil</a>
-                <a href="{{ path('participant', {'id':1}) }}" title="Afficher mon profil">Afficher mon profil</a>
+                <a href="{{ path('participant', {'id': app.user.id}) }}" title="Afficher mon profil">Afficher mon profil</a>
                 <a href="{{ path('app_logout') }}" title="Se déconnecter">Se déconnecter </a>
            {% else %}
                 <a href="{{ path('app_login') }}" title="Se connecter">Se connecter</a>

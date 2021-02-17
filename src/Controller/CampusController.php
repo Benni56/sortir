@@ -12,25 +12,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CampusController extends AbstractController
 {
+//    /**
+//     * @Route("/campus", name="campus")
+//     */
+//    public function index(EntityManagerInterface $entityManager): Response
+//    {
+//        $campus = ['Saint Herblain', 'Rennes', 'Quimper', 'Niort', 'Angers', 'Le Mans'];
+//        foreach($campus as $camp){
+//            $ecole = new Campus();
+//            $ecole->setNom($camp);
+//            $entityManager->persist($ecole);
+//        }
+//        $entityManager->flush();
+//
+//
+//        return $this->render('campus/index.html.twig', [
+//            'controller_name' => 'CampusController',
+//        ]);
+//    }
+
     /**
-     * @Route("/campus", name="campus")
+     * @Route("/campus/{id}", name="campus", methods={"GET"})
+     * @param Campus $campus
+     * @return Response
      */
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-        $campus = ['Saint Herblain', 'Rennes', 'Quimper', 'Niort', 'Angers', 'Le Mans'];
-        foreach($campus as $camp){
-            $ecole = new Campus();
-            $ecole->setNom($camp);
-            $entityManager->persist($ecole);
-        }
-        $entityManager->flush();
-
-
-        return $this->render('campus/index.html.twig', [
-            'controller_name' => 'CampusController',
-        ]);
+    public function index2(Campus $campus) : Response {
+        return $this->render('campus/index.html.twig', ['campus'=>$campus]);
     }
-
 
 
 }
