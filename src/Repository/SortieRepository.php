@@ -43,8 +43,8 @@ class SortieRepository extends ServiceEntityRepository
 
         return $sortizes;
 
-
     }
+
 
 
     // /**
