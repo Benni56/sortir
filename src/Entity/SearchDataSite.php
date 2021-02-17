@@ -5,6 +5,7 @@ namespace App\Entity;
 
 
 use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchDataSite
 {
