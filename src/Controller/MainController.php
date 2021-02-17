@@ -35,4 +35,17 @@ class MainController extends AbstractController
         "form_search" => $form->createView()
         ]);
     }
+    /*   /**
+     * @Route("/sorties", name="sorties_list")
+  */
+    /*    public function list(SortieRepository $sortieRepository): Response
+      {
+           //aller chercher tous les wishes dans la bdd
+           //$wishRepository = $this->getDoctrine()->getRepository(Wish::class);
+           $sortie = $sortieRepository->findCategorizedSorties();
+           return $this->render('sortie/list.html.twig', [
+               "" => $wishes
+           ]);
+       }
+   */
 }

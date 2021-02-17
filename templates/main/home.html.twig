@@ -1,42 +1,48 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %} {{ parent() }} | Sortir {% endblock %}
 
 {% block body %}
+
+    <style type="text/css">
+        a { font-size: 20px}
+    </style>
+
     <div class="jumbotron">
         <div class="container">
-        {{ form_start(form_search) }}
-        {{ form_end(form_search) }}
+            {{ form_start(form_search) }}
 
+            {{ form_end(form_search) }}
         </div>
-
     </div>
 
-    <table>
-        <colgroup span="8" class="columns"></colgroup>
+    <h1>Liste des sorties</h1>
+<table>
+    <colgroup span="8" class="columns"></colgroup>
+    <tr>
+        <th>Nom de la sortie</th>
+        <th>Date de la sortie</th>
+        <th>Date de Clôture</th>
+        <th>Nombre de places</th>
+        <th>Etat</th>
+        <th>Inscrit</th>
+        <th>Organisateur</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for sortie in sorties %}
         <tr>
-            <th>Nom de la sortie</th>
-            <th>Date de la sortie</th>
-            <th>Clôture</th>
-            <th>Nombre de places</th>
-            <th>Etat</th>
-            <th>Inscrit</th>
-            <th>Organisateur</th>
-            <th>Actions</th>
+            <td>{{ sortie.nom }}</td>
+            <td>{{ sortie.dateDebut|date("d/m/Y - H:i")}}</td>
+            <td>{{ sortie.dateClotureInscription|date("d/m/y") }}</td>
+            <td>{{ sortie.nombreInscriptionMax }}</td>
+            <td>{{ sortie.etat }}</td>
+            <td>{{ sortie.inscription }}</td>
+            <td>{{ sortie.organisateur }}</td>
+            <td><a href="{{ path('sortie_detail', {id:sortie.id}) }}" title="Détail">détails</a></td>
         </tr>
+    {% endfor %}
+        </table>
 
-        {% for sortie in sorties %}
-            <tr>
-                <td>{{ sortie.nom }}</td>
-                <td>{{ sortie.dateDebut|date("d/m/Y - H:i")}}</td>
-                <td>{{ sortie.dateClotureInscription|date("d/m/y") }}</td>
-                <td>{{ sortie.nombreInscriptionMax }}</td>
-                <td>{{ sortie.etat }}</td>
-                <td>{{ sortie.inscription }}</td>
-                <td>{{ sortie.organisateur }}</td>
-               {#  <td>{{ sortie.nom }}</td>#}
-            </tr>
-
-        {% endfor %}
-    </table>
 {% endblock %}

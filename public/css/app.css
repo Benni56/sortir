@@ -2,6 +2,10 @@
     height: 200px;
 }
 
+p{
+    font-size: 1.3em;
+    color: darkslategrey;
+}
 
 header, a {
     color: brown;
@@ -16,7 +20,7 @@ a:hover {
 h1 {
     color: darkgreen;
     font-size: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 body {
@@ -58,8 +62,24 @@ button {
 }
 
 form {
-    font-family: Poppins;
+    font-family: Poppins, serif;
     font-size: medium;
     color: #B0413E;
 }
+
+/*Tableau*/
+table {
+    text-align: center;
+    border: 1px solid darkgreen;
+}
+
+th {
+    border: 1px solid darkgreen;
+    padding: 5px 30px;
+}
+
+td {
+    padding: 5px 30px;
+}
+
 

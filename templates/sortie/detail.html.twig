@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Afficher une sortie
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="col align-self-center">
+<h1>Afficher une sortie</h1>
+        </div>
+            <div class="row justify-content-evenly">
+                <div class="col-3">
+                    <b><p>Nom de la Sortie :</p>
+                    <p>Date et heure :</p>
+                    <p>Date limite d'inscription:</p>
+                    <p>Nombre de place :</p>
+                    <p>Durée :</p>
+                    <p>Description et infos :</p></b>
+                </div>
+
+              <div class="col-3">
+                  <p>{{ sortie.nom }}</p>
+                  <p>{{ sortie.dateDebut|date("d-m-Y - H:i") }}</p>
+                  <p>{{ sortie.dateClotureInscription|date("d-m-Y") }}</p>
+                  <p>{{ sortie.nombreInscriptionMax }}</p>
+                  <p>{{ sortie.duree }} minutes</p>
+              </div>
+
+                <div class="col-2">
+                    <b><p>Campus :</p>
+                    <p>Lieu :</p>
+                    <p>Rue :</p>
+                    <p>Code postal :</p>
+                    <p>Latitude :</p>
+                    <p>Longitude :</p></b>
+                </div>
+
+                <div class="col-4">
+                    <p>{{ sortie.campus.nom }}</p>
+                    <p>{{ sortie.lieux.nom }}</p>
+                    <p>{{ sortie.lieux.rue }}</p>
+                    <p>{{ sortie.lieux.villes.codePostal }}</p>
+                    <p>{{ sortie.lieux.latitude }}</p>
+                    <p>{{ sortie.lieux.longitude }}</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-evenly">
+                <div class="col-6">
+                    <p>{{ sortie.descriptionInfos }}</p>
+                </div>
+                    </div>
+
+
+{% endblock %}
