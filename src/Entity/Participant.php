@@ -39,10 +39,9 @@ class Participant implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\Regex(
-     *     pattern="/^.(?=.{6,})(?=..[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=]).$/",
+     *     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$",
      *     match=false,
-     *     message="veuillez saisir au moins 6 caractères dont au moins 1 chiffre, 1 majuscule
-     *                  et 1 caractère spécial")
+     *     message="veuillez saisir au moins 8 caractères dont au moins 1 chiffre et 1 majuscule")
      */
     private $password;
 
@@ -63,6 +62,10 @@ class Participant implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
+     * @Assert\Regex(
+     *     pattern="^0[1-9]([-. ]?[0-9]{2}){4}",
+     *     match=false,
+     *     message="Veuillez saisir un numéro valide, séparé par un espace, tiret ou point")
      */
     private $telephone;
 

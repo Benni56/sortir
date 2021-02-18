@@ -50,4 +50,9 @@ class SearchDataSiteType extends AbstractType
             'data_class' => SearchDataSite::class,
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return '';
+    }
 }

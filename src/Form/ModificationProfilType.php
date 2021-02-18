@@ -73,4 +73,9 @@ class ModificationProfilType extends AbstractType
             'data_class' => Participant::class,
         ]);
     }
+    public function getBlockPrefix()
+    {
+        return '';
+    }
+
 }
