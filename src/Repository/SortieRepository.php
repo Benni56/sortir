@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Sortie;
+use Cassandra\Date;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,23 +20,33 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function search($keywords="")
+    public function search(?string $keywords=null, $dateMin, $dateMax)
     {
         //création requête QB
         $queryBuilder = $this->createQueryBuilder('s');
+
+        //requête si on a bien recçu les mots clés
         if($keywords)
         {
-            $keywordsArray = explode("", $keywords);
+            $keywordsArray = explode(" ", $keywords);
 
             for ($i = 0; $i<count($keywordsArray); $i++) {
                 $queryBuilder
-                    ->where('s.nom LIKE :key')
-                    ->orWhere('s.descriptionInfos LIKE :key')
-                    ->setParameter('key', '%'.$keywordsArray[$i] .'%');
-
+                    ->orWhere("s.nom LIKE :kw$i OR s.descriptionInfos LIKE :kw$i")
+                    ->setParameter(":kw$i", "%". $keywordsArray[$i] ."%");
             }
         }
 
+        if ($dateMin && $dateMax) //changer ca !!
+        {
+        $start = new \DateTime();
+        $end = clone $start;
+        $queryBuilder
+            ->andWhere('s.dateMin BETWEEN :start AND :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end);
+            //->andHaving('s.dateMin', 'ASC');
+        }
         //récupère l'objet querry
         $querry = $queryBuilder->getQuery();
         //retourne le résultat
@@ -46,33 +57,4 @@ class SortieRepository extends ServiceEntityRepository
     }
 
 
-
-    // /**
-    //  * @return Sortie[] Returns an array of Sortie objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Sortie
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
-}
+         }
