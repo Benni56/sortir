@@ -21,12 +21,20 @@ public $keyWords;
 
 
     /**
+     * @Assert\Type("\DateTimeInterface")
+     * @Assert\GreaterThan("today UTC",
+     *     message="La date doit être supérieure à la date du jour")
      * @var datetime
      */
 public $dateMin;
 
 
     /**
+     * @Assert\Type("\DateTimeInterface")
+     * @Assert\Expression(
+     *     "this.getDateMin() < this.getDateMax()",
+     *     message="La date de fin ne doit pas être antérieure à la date du début"
+     * )
      * @var datetime
      */
 public $dateMax;
