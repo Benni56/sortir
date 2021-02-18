@@ -22,7 +22,7 @@ public $keyWords;
 
     /**
      * @Assert\Type("\DateTimeInterface")
-     * @Assert\GreaterThan("today UTC",
+     * @Assert\GreaterThanOrEqual("today UTC",
      *     message="La date doit être supérieure à la date du jour")
      * @var datetime
      */

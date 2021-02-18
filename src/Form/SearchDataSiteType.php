@@ -27,13 +27,15 @@ class SearchDataSiteType extends AbstractType
                 'required'=> false,
                 'label' => 'Entre',
                 'widget' => 'single_text',
+
             ])
 
 
             ->add('dateMax', DateType::class, [
                 'required'=> false,
                 'label' => 'et',
-               'widget'=>'single_text'
+               'widget'=>'single_text',
+
             ])
             ->add('submit', SubmitType::class, [
                 'label'=>'Rechercher'

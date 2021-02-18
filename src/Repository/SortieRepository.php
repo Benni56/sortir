@@ -20,7 +20,7 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function search(?string $keywords=null, $dateMin, $dateMax)
+    public function search(?string $keywords=null, ?\DateTime $dateMin, ?\DateTime $dateMax)
     {
         //création requête QB
         $queryBuilder = $this->createQueryBuilder('s');
@@ -37,14 +37,13 @@ class SortieRepository extends ServiceEntityRepository
             }
         }
 
-        if ($dateMin && $dateMax) //changer ca !!
+        if ($dateMin < $dateMax)
         {
-        $start = new \DateTime();
-        $end = clone $start;
+            $dateMax->add(new \DateInterval('PT23H59M'));
         $queryBuilder
-            ->andWhere('s.dateMin BETWEEN :start AND :end')
-            ->setParameter('start', $start)
-            ->setParameter('end', $end);
+            ->andWhere('s.dateDebut BETWEEN :start AND :end')
+            ->setParameter('start', $dateMin)
+            ->setParameter('end', $dateMax);
             //->andHaving('s.dateMin', 'ASC');
         }
         //récupère l'objet querry
