@@ -7,7 +7,7 @@ p{
     color: darkslategrey;
 }
 
-header, a {
+a {
     color: brown;
     font-size: 25px;
     margin-bottom: 25px;
@@ -67,6 +67,11 @@ form {
     color: #B0413E;
 }
 
+#plus {
+    width: 20px;
+    height: 20px;
+}
+
 /*Tableau*/
 table {
     text-align: center;
@@ -82,4 +87,6 @@ td {
     padding: 5px 30px;
 }
 
-
+#détail {
+    font-size: 20px
+}
