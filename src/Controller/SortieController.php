@@ -6,6 +6,7 @@ use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Entity\Ville;
 use App\Form\SortieType;
+use App\Repository\ParticipantRepository;
 use App\Security\AppAuthenticator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Repository\SortieRepository;
@@ -27,7 +28,8 @@ class SortieController extends AbstractController
                                   UserPasswordEncoderInterface $passwordEncoder,
                                   GuardAuthenticatorHandler $guardHandler,
                                   AppAuthenticator $authenticator,
-                                  EtatRepository $etatRepository): Response
+                                  EtatRepository $etatRepository,
+                                  ParticipantRepository $participantRepository): Response
     {
         //création de l'instance sortie vide associée au formulaire
         $sortie = new Sortie();
@@ -42,6 +44,10 @@ class SortieController extends AbstractController
 
             //on insert les données
             $en = $request->request->get("enregistrer");
+            $participant= $participantRepository->findOneBy(['email'=>$user->getUsername()]);
+
+            $sortie->setCampus($participant->getNameCampus());
+            $sortie->setOrganisateur($participant);
 
             if ($en == "creer") {
                 $etat = $etatRepository->find(1);
@@ -50,6 +56,7 @@ class SortieController extends AbstractController
                 $entityManager->persist($sortie);
                 $entityManager->flush();
 
+            } else if ($en == 'publier'){
                 $etat = $etatRepository->find(2);
                 $sortie->setEtat($etat);
                 $entityManager = $this->getDoctrine()->getManager();
