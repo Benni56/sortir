@@ -44,8 +44,8 @@ class SortieController extends AbstractController
 
             //on insert les données
             $en = $request->request->get("enregistrer");
-            $participant= $participantRepository->findOneBy(['email'=>$user->getUsername()]);
 
+            $participant= $participantRepository->findOneBy(['email'=>$user->getUsername()]);
             $sortie->setCampus($participant->getNameCampus());
             $sortie->setOrganisateur($participant);
 
